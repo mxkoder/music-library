@@ -47,3 +47,25 @@ exports.readById = async (req, res) => {
 
     db.close();
 };
+
+exports.updateArtist = async (req, res) => {
+    const db = await getDb();
+    const { artistId } = req.params;
+    const { name, genre } = req.body;
+
+    const [[selectedArtist]] = await db.query(
+        'SELECT * FROM Artist WHERE id = ?', [ artistId, ]
+        );
+
+    if(!selectedArtist) {
+        res.sendStatus(404);
+    } else {
+        await db.query('UPDATE Artist SET ? WHERE id = ?', 
+        [ { name, genre}, artistId, ] )
+
+        res.status(200);
+    }
+
+    db.close();
+};
+
