@@ -50,20 +50,21 @@ exports.readById = async (req, res) => {
 
 exports.updateArtist = async (req, res) => {
     const db = await getDb();
+    const data = req.body;
     const { artistId } = req.params;
-    const { name, genre } = req.body;
 
-    const [[selectedArtist]] = await db.query(
-        'SELECT * FROM Artist WHERE id = ?', [ artistId, ]
-        );
+    try {
+        const [
+            { affectedRows },
+        ] = await db.query('UPDATE Artist SET ? WHERE id = ?', [data, artistId]);
 
-    if(!selectedArtist) {
+        if (!affectedRows) {
         res.sendStatus(404);
-    } else {
-        await db.query('UPDATE Artist SET ? WHERE id = ?', 
-        [ { name, genre}, artistId, ] )
-
-        res.status(200);
+        } else {
+        res.status(200).send();
+        }
+    } catch (err) {
+        res.sendStatus(500);
     }
 
     db.close();
