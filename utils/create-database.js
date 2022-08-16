@@ -41,7 +41,7 @@ try {
         genre VARCHAR(25)
     )`)
 
-    db.close();
+    db.end();
 
 } catch (err) {
    // if something goes wrong, console.log the error and the current environment variables

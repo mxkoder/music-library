@@ -15,7 +15,7 @@ exports.create = async(req, res) => {
     } catch (err) {
         res.sendStatus(500).json(err);
     }
-    db.close();
+    db.end();
 };
 
 exports.read = async (_, res) => {
@@ -28,7 +28,7 @@ exports.read = async (_, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-    db.close();
+    db.end();
 };
 
 exports.readById = async (req, res) => {
@@ -45,7 +45,7 @@ exports.readById = async (req, res) => {
         res.status(200).json(selectedArtist);
     }
 
-    db.close();
+    db.end();
 };
 
 exports.updateArtist = async (req, res) => {
@@ -67,7 +67,7 @@ exports.updateArtist = async (req, res) => {
         res.sendStatus(500);
     }
 
-    db.close();
+    db.end();
 };
 
 exports.deleteArtist = async (req, res) => {
@@ -89,6 +89,6 @@ exports.deleteArtist = async (req, res) => {
         res.sendStatus(500);
     }
 
-    db.close();
+    db.end();
 };
 
