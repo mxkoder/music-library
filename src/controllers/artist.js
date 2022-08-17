@@ -54,6 +54,7 @@ exports.updateArtist = async (req, res) => {
     const { artistId } = req.params;
 
     try {
+
         const [
             { affectedRows },
         ] = await db.query('UPDATE Artist SET ? WHERE id = ?', [data, artistId]);
@@ -61,7 +62,7 @@ exports.updateArtist = async (req, res) => {
         if (!affectedRows) {
         res.sendStatus(404);
         } else {
-        res.status(200).send();
+        res.sendStatus(200);
         }
     } catch (err) {
         res.sendStatus(500);
@@ -83,7 +84,7 @@ exports.deleteArtist = async (req, res) => {
         res.sendStatus(404);
         } else {
             await db.query('DELETE FROM Artist WHERE id = ?', [artistId]);
-            res.status(200).send();
+            res.sendStatus(200);
         }
     } catch (err) {
         res.sendStatus(500);
