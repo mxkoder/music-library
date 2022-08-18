@@ -1,6 +1,7 @@
 const getDb = require('../services/db');
 
 exports.create =  async (req, res) => {
+    //res.sendStatus(200);
     const db = await getDb();
     const { name, year } = req.body;
     const { artistId } = req.params;

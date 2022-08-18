@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.use('/artist', artistRouter);
 
-app.use('/artist/:artistId/album', albumRouter);
+//app.use('/artist/:artistId/album', albumRouter);
 app.use('/album', albumRouter);
 
 

@@ -3,7 +3,7 @@ const albumController = require('../controllers/album');
 
 const router = express.Router();
 
-router.post('/', albumController.create);
+//router.post('/', albumController.create);
 
 router.get('/', albumController.read);
 
