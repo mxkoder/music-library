@@ -13,8 +13,9 @@ describe('create album', () => {
     });
 
     describe('/artist/:artistId/album', () => {
-        //to create a new album associated to an artist. 
+        
         describe('POST', () => {
+            //to create a new album associated to an artist. 
             it('creates a new album in the database if the artist already exists', async () => {
                 await request(app).post('/artist').send({
                     name: 'Tame Impala',
@@ -51,5 +52,14 @@ describe('create album', () => {
                 expect(res.status).to.equal(404);
             });
         });
+
+        describe('/album',() => {
+            // test to check if album path in app is working as expected
+            it('receives back a status code from /album', async () => {
+                const res = await request(app).get('/album')
+
+                expect(res.status).to.equal(200);
+            })
+        })
     });
 });
