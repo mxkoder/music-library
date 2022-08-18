@@ -13,7 +13,8 @@ exports.create = async(req, res) => {
             ]);
         res.sendStatus(201);
     } catch (err) {
-        res.sendStatus(500).json(err);
+        console.error(err);
+        res.sendStatus(500);
     }
     db.end();
 };
@@ -26,8 +27,8 @@ exports.read = async (_, res) => {
 
         res.status(200).json(artists);
     } catch (err) {
-        // change to console log the error
-        res.status(500).json(err);
+        console.error(err);
+        res.sendStatus(500);
     }
     db.end();
 };
@@ -66,6 +67,7 @@ exports.updateArtist = async (req, res) => {
         res.sendStatus(200);
         }
     } catch (err) {
+        console.error(err);
         res.sendStatus(500);
     }
 
@@ -88,6 +90,7 @@ exports.deleteArtist = async (req, res) => {
             res.sendStatus(200);
         }
     } catch (err) {
+        console.error(err);
         res.sendStatus(500);
     }
 
