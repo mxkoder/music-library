@@ -20,6 +20,8 @@ exports.create =  async (req, res) => {
             ]);
         res.sendStatus(201);
     } catch (err) {
+        // if send a .json(err), risk sending SQL / backend data to public domain
+        // better to console log the error and then send a status code
         console.error(err);
         res.sendStatus(500);
     }

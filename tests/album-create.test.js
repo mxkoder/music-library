@@ -35,10 +35,10 @@ describe('create album', () => {
                 expect(res.status).to.equal(201);
 
                 const [[albumEntries]] = await db.query(
-                    `SELECT * FROM Album WHERE name = 'Innerspeaker'`
+                    `SELECT * FROM Album WHERE artistId = ${artist.insertId}`
                 );
-                console.log('album entries');
-                console.log(albumEntries);
+                // console.log('album entries');
+                // console.log(albumEntries);
 
                 expect(albumEntries.name).to.equal('Innerspeaker');
                 expect(albumEntries.year).to.equal(2010);
