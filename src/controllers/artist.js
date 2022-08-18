@@ -26,6 +26,7 @@ exports.read = async (_, res) => {
 
         res.status(200).json(artists);
     } catch (err) {
+        // change to console log the error
         res.status(500).json(err);
     }
     db.end();

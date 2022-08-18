@@ -45,14 +45,14 @@ describe('create album', () => {
             });
 
             //You will need to make sure there is an artist in your database before you try and create an album.
-            // it('returns 404 if there is no artist id associated with the album', async () => {
-            //     const res = await request(app).post('/artist/999999/album').send({
-            //         name: 'Album with no artist',
-            //         year: 1990,
-            //     });
+            it('returns 404 if there is no artist id associated with the album', async () => {
+                const res = await request(app).post('/artist/999999/album').send({
+                    name: 'Album with no artist',
+                    year: 1990,
+                });
 
-            //     expect(res.status).to.equal(404);
-            // });
+                expect(res.status).to.equal(404);
+            });
         });
 
         describe('/album',() => {
