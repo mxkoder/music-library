@@ -6,20 +6,22 @@ exports.create =  async (req, res) => {
     const { name, year } = req.body;
     const { artistId } = req.params;
 
+
     // need to check if artists is in db first
 
     //creating a new album
     try {
         await db.query(
             `INSERT INTO Album (name, year, artistId)
-            VALUES (?, ?)`, [
+            VALUES (?, ?, ?)`, [
                 name,
                 year,
                 artistId
             ]);
         res.sendStatus(201);
     } catch (err) {
-        res.sendStatus(500).json(err);
+        console.error(err);
+        res.sendStatus(500);
     }
     db.end();
 };
